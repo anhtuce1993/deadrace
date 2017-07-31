@@ -1,0 +1,11 @@
+Add 
+
+extern "C" void beginning();
+
+extern "C" void ending();
+
+Make test
+
+Remove those recent added texts
+
+Linking
