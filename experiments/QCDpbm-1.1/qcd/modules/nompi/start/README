@@ -1,0 +1,45 @@
+
+********************************************************************************
+
+                          Basic utility functions
+
+********************************************************************************
+
+
+Files
+-----
+
+utils.c        Error termination and basic allocation functions
+
+
+Include file
+------------
+
+The file start.h defines the prototypes for all externally accessible
+functions that are defined in the *.c files listed above.
+
+
+List of functions
+-----------------
+
+int safe_mod(int x,int y)
+  Returns x mod y, where y is assumed positive and x can have any
+  sign. The return value is in the interval [0,y)
+
+void *amalloc(size_t size,int p)
+  Allocates an aligned memory area of "size" bytes, with starting
+  address (the return value) that is an integer multiple of 2^p
+
+void afree(void *addr)
+  Frees the aligned memory area at address "addr" that was 
+  previously allocated using amalloc
+
+void error(int test,int no,char *name,char *format,...)
+  Checks whether "test"=0 and if not aborts the program gracefully
+  with error number "no" after printing the "name" of the program and 
+  an error message to stdout. The message is formed using the "format" 
+  string and any additional arguments, exactly as in a printf statement
+
+void error_root(int test,int no,char *name,char *format,...)
+  Same as error(), provided for compatibility
+

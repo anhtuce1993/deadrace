@@ -1,0 +1,33 @@
+
+QCD double-precision speed test
+-------------------------------
+
+32x32x16x16 lattice, 2x2x1x1 process grid, 16x16x16x16 local lattice
+
+There are 4 MPI processes
+The local size of the gauge field is 36 MB
+The local size of a quark field is 12 MB
+Using inline assembly SSE3 instructions
+Assuming SSE prefetch instructions fetch 64 bytes
+
+Program norm_square_dble:
+Time per lattice point: 0.105 usec (455 Mflops/process)
+
+Program mulc_spinor_add_dble:
+Time per lattice point: 0.222 usec (432 Mflops/process)
+
+Program Qhat_dble:
+Time per lattice point: 3.191 usec (594 Mflops/process)
+
+########################################################
+#                                                      #
+#             SYNTHETIC QCD SPEED TEST                 #
+#                                                      #
+#  Using double-precision (64 bit) data and programs   #
+#                                                      #
+#   Time per lattice point:     7.258 usec             #
+#   Average speed:              0.575 Gflops/process   #
+#   Total throughput:           2.301 Gflops           #
+#                                                      #
+########################################################
+

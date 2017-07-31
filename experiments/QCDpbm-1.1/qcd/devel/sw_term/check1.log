@@ -1,0 +1,27 @@
+
+Initialization of the global pauli arrays
+-----------------------------------------
+
+32x16x8x8 lattice, 2x2x1x1 process grid, 16x8x8x8 local lattice
+
+Allocated global single-precision pauli field
+max|p-1| = 0.0e+00
+
+Allocated global double-precision pauli field
+max|p-1| = 0.0e+00
+
+Inverted swd_e
+max deviation swd_e = 2.2e-15
+max deviation swd_o = 0.0e+00
+
+Inverted swd_o
+max deviation swd_e = 0.0e+00
+max deviation swd_o = 2.0e-15
+
+Assigned swd to sw
+max deviation = 6.0e-08
+
+Inverted swd_eo
+max deviation = 2.3e-15
+Freed sw and swd
+

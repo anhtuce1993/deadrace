@@ -1,0 +1,81 @@
+
+Gauge covariance of Qhat (random fields)
+----------------------------------------
+
+32x32x16x16 lattice, 2x2x1x1 process grid, 16x16x16x16 local lattice
+
+
+Process 0 (send) : lclk = 0 
+Process 0 (recv) : MPI_ANY_SOURCE lclk = 1 recvlclk = 0 src = 2 abnot initalized[front = 1 back = 1] [front = 0 back = 1]  Empty!!! 158796 KB 
+
+Process 0 (send) : lclk = 1 
+Process 0 (recv) : MPI_ANY_SOURCE lclk = 2 recvlclk = 1 src = 2 abinitializedempty[front = 2 back = 2] [front = 56 back = 2] 159236 KB 
+
+Process 0 (send) : lclk = 2 
+Process 0 (recv) : MPI_ANY_SOURCE lclk = 3 recvlclk = 2 src = 1 abnot initalized[front = 3 back = 3] [front = 56 back = 3]  Empty!!! 159808 KB 
+
+Process 0 (send) : lclk = 3 
+Process 0 (recv) : MPI_ANY_SOURCE lclk = 4 recvlclk = 3 src = 1 abinitializedempty[front = 4 back = 4] [front = 56 back = 4] 160248 KB 
+
+Process 0 (send) : lclk = 4 
+Process 0 (recv) : MPI_ANY_SOURCE lclk = 5 recvlclk = 4 src = 2 abinitializedempty[front = 5 back = 5] [front = 56 back = 5] 174044 KB 
+
+Process 0 (send) : lclk = 5 
+Process 0 (recv) : MPI_ANY_SOURCE lclk = 6 recvlclk = 5 src = 1 abinitializedempty[front = 6 back = 6] [front = 56 back = 6] 174624 KB 
+
+Process 0 (send) : lclk = 6 
+Process 0 (recv) : MPI_ANY_SOURCE lclk = 7 recvlclk = 6 src = 2 abinitializedempty[front = 7 back = 7] [front = 56 back = 7] 183264 KB 
+
+Process 0 (send) : lclk = 7 
+Process 0 (recv) : MPI_ANY_SOURCE lclk = 8 recvlclk = 7 src = 1 abinitializedempty[front = 8 back = 8] [front = 56 back = 8] 188448 KB 
+
+Process 0 (send) : lclk = 8 
+Process 0 (recv) : MPI_ANY_SOURCE lclk = 9 recvlclk = 8 src = 2 abinitializedempty[front = 9 back = 9] [front = 56 back = 9] 189068 KB 
+
+Process 0 (send) : lclk = 9 
+Process 0 (recv) : MPI_ANY_SOURCE lclk = 10 recvlclk = 9 src = 1 abinitializedempty[front = 10 back = 10] [front = 56 back = 10] 189648 KB 
+
+Process 0 (send) : lclk = 10 
+Process 0 (recv) : MPI_ANY_SOURCE lclk = 11 recvlclk = 10 src = 2 abinitializedempty[front = 11 back = 11] [front = 56 back = 11] 190224 KB 
+
+Process 0 (send) : lclk = 11 
+Process 0 (recv) : MPI_ANY_SOURCE lclk = 12 recvlclk = 11 src = 2 abinitializedempty[front = 12 back = 12] [front = 56 back = 12] 190800 KB 
+
+Process 0 (send) : lclk = 12 
+Process 0 (recv) : MPI_ANY_SOURCE lclk = 13 recvlclk = 12 src = 1 abinitializedempty[front = 13 back = 13] [front = 56 back = 13] 191380 KB 
+
+Process 0 (send) : lclk = 13 
+Process 0 (recv) : MPI_ANY_SOURCE lclk = 14 recvlclk = 13 src = 1 abinitializedempty[front = 14 back = 14] [front = 56 back = 14] 191956 KB 
+
+Process 0 (send) : lclk = 14 
+Process 0 (recv) : MPI_ANY_SOURCE lclk = 15 recvlclk = 14 src = 2 abinitializedempty[front = 15 back = 15] [front = 56 back = 15] 193448 KB 
+
+Process 0 (send) : lclk = 15 
+Process 0 (recv) : MPI_ANY_SOURCE lclk = 16 recvlclk = 15 src = 1 abinitializedempty[front = 16 back = 16] [front = 56 back = 16] 194024 KB 
+
+Process 0 (send) : lclk = 16 
+Process 0 (recv) : MPI_ANY_SOURCE lclk = 17 recvlclk = 16 src = 2 abinitializedempty[front = 17 back = 17] [front = 0 back = 17] 197480 KB 
+
+Process 0 (send) : lclk = 17 
+Process 0 (recv) : MPI_ANY_SOURCE lclk = 18 recvlclk = 17 src = 1 abinitializedempty[front = 18 back = 18] [front = 0 back = 18] 200936 KB 
+
+Process 0 (send) : lclk = 18 
+Process 0 (recv) : MPI_ANY_SOURCE lclk = 19 recvlclk = 18 src = 2 abinitializedempty[front = 19 back = 19] [front = 0 back = 19] 201552 KB 
+
+Process 0 (send) : lclk = 19 
+Process 0 (recv) : MPI_ANY_SOURCE lclk = 20 recvlclk = 19 src = 1 abinitializedempty[front = 20 back = 20] [front = 0 back = 20] 202132 KB 
+
+Process 0 (send) : lclk = 20 
+Process 0 (recv) : MPI_ANY_SOURCE lclk = 21 recvlclk = 20 src = 2 abinitializedempty[front = 21 back = 21] [front = 0 back = 21] 202708 KB 
+
+Process 0 (send) : lclk = 21 
+Process 0 (recv) : MPI_ANY_SOURCE lclk = 22 recvlclk = 21 src = 2 abinitializedempty[front = 22 back = 22] [front = 0 back = 22] 203284 KB 
+
+Process 0 (send) : lclk = 22 
+Process 0 (recv) : MPI_ANY_SOURCE lclk = 23 recvlclk = 22 src = 1 abinitializedempty[front = 23 back = 23] [front = 0 back = 23] 203860 KB 
+
+Process 0 (send) : lclk = 23 
+Process 0 (recv) : MPI_ANY_SOURCE lclk = 24 recvlclk = 23 src = 1 abinitializedempty[front = 24 back = 24] [front = 0 back = 24] 204436 KB 
+Maximal normalized difference = 8.13e-07
+(should be around 1*10^(-6) or so)
+

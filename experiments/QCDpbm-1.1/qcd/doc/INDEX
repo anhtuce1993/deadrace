@@ -1,0 +1,10 @@
+
+dirac.ps              Implementation of the lattice Dirac operator
+
+ranlux_guide.ps       User's guide for the random number generator ranlux.
+                      Notes accompanying the program files ranlxs.c and 
+                      ranlxd.c in modules/random
+
+ranlux_notes.ps       Description of the algorithms used in the current
+                      version of the ranlux random number generator
+

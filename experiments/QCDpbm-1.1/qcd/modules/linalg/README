@@ -1,0 +1,73 @@
+
+********************************************************************************
+
+             Computation of scalar products and linear combinations
+
+********************************************************************************
+
+
+Files
+-----
+
+linalg.c       Function library for the computation of scalar products and
+               linear combinations in single precision
+
+linalg_dble.c  Function library for the computation of scalar products and
+               linear combinations in double precision
+
+
+Include file
+------------
+
+The file linalg.h defines the prototypes for all externally accessible
+functions that are defined in the *.c files listed above.
+
+
+List of functions
+-----------------
+
+Scalar products etc. are globally summed if the parameter icom is
+equal to 1. In this case the calculated values are guaranteed to be
+exactly the same on all processes
+
+The following programs operate on arrays of spinor fields whose base
+address is passed through the arguments. The length of the arrays is
+specified by the parameter vol.
+
+complex spinor_prod(int vol,int icom,spinor *pk,spinor *pl)
+  Computes the scalar product of the fields pk[] and pl[]
+
+float norm_square(int vol,int icom,spinor *pk)
+  Computes the square of the norm of the field pk[]
+
+void mulc_spinor_add(int vol,spinor *pk,spinor *pl,complex z)
+  Replaces pk[] by pk[]+z*pl[]
+
+float normalize(int vol,int icom,spinor *pk)
+  Replaces pk[] by pk[]/||pk|| and returns the norm ||pk||
+
+void mulg5(int vol,spinor *pk)
+  Multiplies the field pk[] with gamma_5
+
+void mulmg5(int vol,spinor *pk)
+  Multiplies the field pk[] with -gamma_5
+
+complex_dble spinor_prod_dble(int vol,int icom,spinor_dble *pk,
+                              spinor_dble *pl)
+  Computes the scalar product of the fields pk[] and pl[]
+
+double norm_square_dble(int vol,int icom,spinor_dble *pk)
+  Computes the square of the norm of the field pk[]
+
+void mulc_spinor_add_dble(int vol,spinor_dble *pk,spinor_dble *pl,
+                          complex_dble z)
+  Replaces pk[] by pk[]+z*pl[]
+
+double normalize_dble(int vol,int icom,spinor_dble *pk)
+  Replaces pk[] by pk[]/||pk|| and returns the norm ||pk||
+
+void mulg5_dble(int vol,spinor_dble *pk)
+  Multiplies the field pk[] with gamma_5
+
+void mulmg5_dble(int vol,spinor_dble *pk)
+  Multiplies the field pk[] with -gamma_5

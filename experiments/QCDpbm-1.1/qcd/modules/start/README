@@ -1,0 +1,226 @@
+
+********************************************************************************
+
+             Programs that mainly serve to initialize the fields
+
+********************************************************************************
+
+Before the simulation is started, memory space for the basic fields
+must be allocated and the globally defined indices and pointers must
+be initialized. The field allocation routines listed below are safe in
+the sense that any memory space that is reallocated is automatically
+freed first.
+
+
+Files
+-----
+
+geometry.c     Initialization of the global geometry arrays
+
+parms.c        Lattice parameters
+
+sinit.c        Generic assignement and initialization programs for single- 
+               and double-precision spinor fields
+
+start.c        Field allocation and initialization programs
+
+ucom.c         Communication of the link variables residing at the boundaries 
+               of the local lattices
+
+utils.c        Error termination and basic allocation functions
+
+
+Include file
+------------
+
+The file start.h defines the prototypes for all externally accessible
+functions that are defined in the *.c files listed above.
+
+
+List of functions
+-----------------
+
+int ipr_global(int n[])
+  This program returns the number of the process with cartesian
+  coordinates n[0],..,n[3] in the process grid
+
+void ipt_global(int x[],int *ip,int *ix)
+  Given the coordinates x[0],..,x[3] of a point on the full lattice,
+  this program determines the number ip of the process that operates
+  on the corresponding local lattice and the associated local point
+  point index ix (0<=ix<VOLUME)
+
+void geometry(void)
+  Computation of the global arrays cpr,npr describing the process
+  grid and the index arrays ipt,iup,idn and map
+
+lat_parms_t set_lat_parms(double beta,double kappa,double csw)
+  Sets the basic lattice parameters. The return value is a structure
+  that contains the lattice parameters
+
+lat_parms_t lat_parms(void)
+  Returns the current lattice parameters in a structure with elements
+  *.beta,*.kappa,*.m0,*.csw where m0 is bare quark mass determined by
+  kappa
+
+void set_s2zero(int vol,spinor *pk)
+  Sets the single-precision spinor field pk[] to zero
+
+void set_sd2zero(int vol,spinor_dble *pk)
+  Sets the double-precision spinor field pk[] to zero
+
+void random_s(int vol,spinor *pk,float sigma)
+  Initializes the components of the single-precision field pk[]
+  to (complex) random values z with distribution proportional
+  to exp{-|z|^2/sigma^2}
+
+void random_sd(int vol,spinor_dble *pk,double sigma)
+  Initializes the components of the double-precision field pk[]
+  to (complex) random values z with distribution proportional
+  to exp{-|z|^2/sigma^2}
+
+void assign_s2s(int vol,spinor *pk,spinor *pl)
+  Assigns the single-precision field pk[] to the single-precision
+  field pl[]
+
+void assign_s2sd(int vol,spinor *pk,spinor_dble *pl)
+  Assigns the single-precision field pk[] to the double-precision
+  field pl[]
+
+void assign_sd2s(int vol,spinor_dble *pk,spinor *pl)
+  Assigns the double-precision field pk[] to the single-precision
+  field pl[]
+
+void assign_sd2sd(int vol,spinor_dble *pk,spinor_dble *pl)
+  Assigns the double-precision field pk[] to the double-precision
+  field pl[]
+
+void start_ranlux(int level,int seed)
+  Initializes the random number generators ranlxs and ranlxd. The
+  luxury level should be 0 (recommended) or 1 (exceptional), and 
+  the seed can be any positive integer less than 2^31/NPROC
+
+void alloc_u(void)
+  Allocates the memory space for the single-precision gauge field,
+  initializes the global pointer pu and sets the link variables to
+  unity
+
+void alloc_ud(void)
+  Allocates the memory space for the double-precision gauge field,
+  initializes the global pointer pud and sets the link variables to
+  unity
+
+void alloc_s(int no_fields)
+  Allocates the memory space for "no_fields" single-precision fermion
+  fields, initializes the global pointer ps and sets the spinor
+  components to zero
+
+void alloc_sd(int no_fields)
+  Allocates the memory space for "no_fields" double-precision fermion
+  fields, initializes the global pointer psd and sets the spinor
+  components to zero
+
+void free_u(void)
+  Frees the memory space previously allocated for the single-precision
+  gauge field and resets the global pointer pu to NULL
+
+void free_ud(void)
+  Frees the memory space previously allocated for the double-precision
+  gauge field and resets the global pointer pud to NULL
+
+void free_s(void)
+  Frees the memory space previously allocated for the single-precision
+  fermion fields and resets the global pointer ps to NULL
+
+void free_sd(void)
+  Frees the memory space previously allocated for the double-precision
+  fermion fields and resets the global pointer psd to NULL
+
+void random_u(void)
+  Initializes the single-precision link variables to uniformly
+  distributed random SU(3) matrices
+
+void random_ud(void)
+  Initializes the global double-precision link variables to uniformly
+  distributed random SU(3) matrices
+
+void renormalize_u(void)
+  Projects the global single-precision link variables back to SU(3)
+
+void renormalize_ud(void)
+  Projects the global double-precision link variables back to SU(3)
+
+void assign_u2ud(void)
+  Assigns the single-precision link variables *(pu[ix][mu]) to the
+  double-precision link variables *(pud[ix][mu]) and then projects
+  the latter back to SU(3)
+
+void assign_ud2u(void)
+  Assigns the double-precision link variables *(pud[ix][mu]) to
+  to the single-precision link variables *(pu[ix][mu])
+
+void copy_bnd_u(void)
+  Fetches the single-precision link variables on the boundaries of the
+  local lattice from the neighbouring processes and stores them in a 
+  buffer
+
+void copy_bnd_ud(void)
+  Fetches the double-precision link variables on the boundaries of the
+  local lattice from the neighbouring processes and stores them in a 
+  buffer
+
+void plaq_u(int ix,int mu,int nu,su3 **u)
+  Calculates the pointers u[4] to the four single-precision link
+  variables in the (mu,nu)-plaquette at the point ix on the local 
+  lattice. The values stored at these memory locations are correct
+  only after copy_bnd_u() is called
+
+void plaq_ud(int ix,int mu,int nu,su3_dble **u)
+  Calculates the pointers u[4] to the four double-precision link
+  variables in the (mu,nu)-plaquette at the point ix on the local 
+  lattice. The values stored at these memory locations are correct
+  only after copy_bnd_ud() is called
+
+void free_ucom_bufs(int iu,int iud)
+  Frees the communication buffers used by copy_bnd_u if iu=1 and those
+  used by copy_bnd_ud if iud=1
+
+int safe_mod(int x,int y)
+  Returns x mod y, where y is assumed positive and x can have any
+  sign. The return value is in the interval [0,y)
+
+int mpi_tag(void)
+  Returns a new send tag. Usage of this counter guarantees a safe
+  tagging of messages
+
+void *amalloc(size_t size,int p)
+  Allocates an aligned memory area of "size" bytes, with starting
+  address (the return value) that is an integer multiple of 2^p
+
+void afree(void *addr)
+  Frees the aligned memory area at address "addr" that was 
+  previously allocated using amalloc
+
+void error(int test,int no,char *name,char *format,...)
+  Checks whether "test"=0 on all processes and, if not, aborts the
+  program gracefully with error number "no" after printing the "name"
+  of the calling program and an error message to stdout from process 0.
+  The message is formed using the "format" string and any additional
+  arguments, exactly as in a printf statement
+
+void error_root(int test,int no,char *name,char *format,...)
+  Same as the error() function except that "test" is examined on
+  process 0 only
+
+int error_loc(int test,int no,char *name,char *text)
+  Checks whether "test"=0 on the local process and, if not, saves the
+  error number "no", the program "name" and the error message "text".
+  Only the data of the first instance where this happens are stored.
+  In all cases the program returns the value of test
+
+void error_chk(void)
+  Checks the status of the data saved by error_loc() and aborts the
+  program gracefully, with error number 1, if an error is recorded on
+  some of the processes. Before abortion the error numbers, program
+  names and error messages saved on these processes are printed to
+  stdout from process 0

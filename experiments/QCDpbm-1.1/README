@@ -1,0 +1,31 @@
+
+################################################################################
+
+                      LATTICE QCD PARALLEL BENCHMARKS 
+
+################################################################################
+
+Lattice QCD simulations are nowadays performed on large parallel
+computers with hundreds of nodes that are connected through a
+high-speed network.
+
+In these computations, the lattice fields are usually distributed
+over all available nodes and frequent communications among these are
+then required. Moreover, since the fields do not fit in the cache
+memory of the processors, lattice QCD programs tend to generate a
+heavy memory-to-processor traffic. The performance of these programs
+is consequently mainly limited by the effective network and memory
+bandwidths.
+
+Benchmarking lattice QCD programs is difficult, because the speed of
+the simulations not only depends on the computer, but also very much
+on the lattice formulation of the theory, the lattice parameters and
+on the chosen algorithms and their implementation.
+
+The benchmark programs provided here are simple synthetic speed tests
+that measure the computer time required for some frequently performed
+operations in a typical lattice QCD calculation. There are two sets of
+programs, one testing the network performance (see net/README) and the
+other measuring the time required for some basic QCD programs (see
+qcd/README).
+

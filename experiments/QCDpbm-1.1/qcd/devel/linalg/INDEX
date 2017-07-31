@@ -1,0 +1,7 @@
+
+Programs for scalar products and linear combinations
+
+check1        Consistency checks on the programs in the module linalg
+
+check2        Consistency checks on the programs in the module linalg_dble
+

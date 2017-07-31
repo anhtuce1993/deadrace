@@ -1,0 +1,9 @@
+
+Hermiticity of Qhat_dble (random fields)
+----------------------------------------
+
+32x16x8x8 lattice, 2x2x1x1 process grid, 16x8x8x8 local lattice
+
+|<r,Qhat_dble*s>-<Qhat_dble*r,s>|/(||r||*||s||) = 8.26e-18
+(should be at most 10^(-15) or so)
+

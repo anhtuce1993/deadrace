@@ -1,0 +1,20 @@
+
+Action of Qhat_dble on plane waves
+----------------------------------
+
+32x16x8x8 lattice, 2x2x1x1 process grid, 16x8x8x8 local lattice
+
+For this test to pass, the calculated differences delta
+should be at most 1*10^(-14) or so
+
+delta = 4.10e-15 at p=(6,14,5,3)
+delta = 7.50e-15 at p=(26,6,1,3)
+delta = 6.95e-15 at p=(23,11,3,2)
+delta = 9.53e-15 at p=(26,1,6,7)
+delta = 2.34e-15 at p=(5,3,2,3)
+delta = 7.01e-15 at p=(16,10,5,7)
+delta = 5.68e-15 at p=(18,3,6,5)
+delta = 7.09e-15 at p=(12,14,3,2)
+delta = 3.42e-15 at p=(10,9,0,1)
+delta = 2.68e-15 at p=(4,7,6,2)
+

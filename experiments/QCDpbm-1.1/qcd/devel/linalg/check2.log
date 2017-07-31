@@ -1,0 +1,90 @@
+
+Consistency of the programs in the module linalg_dble
+-----------------------------------------------------
+
+32x16x8x8 lattice, 2x2x1x1 process grid, 16x8x8x8 local lattice
+
+Checks without global summation
+===============================
+
+First case: full lattice
+
+Check of spinor_prod, spinor_prod_re
+and norm_square: 2.96e-16
+
+Consistency of spinor_prod, norm_square
+and mulc_spinor_add: 3.14e-16
+
+Consistency of spinor_prod, norm_square,
+and normalize: 3.63e-16
+
+Check of mulg5 and mulmg5: 0.00e+00
+
+Second case: even points
+
+Check of spinor_prod, spinor_prod_re
+and norm_square: 2.96e-16
+
+Consistency of spinor_prod, norm_square
+and mulc_spinor_add: 3.16e-16
+
+Consistency of spinor_prod, norm_square,
+and normalize: 1.82e-16
+
+Check of mulg5 and mulmg5: 0.00e+00
+
+Third case: odd points
+
+Check of spinor_prod, spinor_prod_re
+and norm_square: 2.96e-16
+
+Consistency of spinor_prod, norm_square
+and mulc_spinor_add: 3.16e-16
+
+Consistency of spinor_prod, norm_square,
+and normalize: 1.82e-16
+
+Check of mulg5 and mulmg5: 0.00e+00
+
+Checks with global summation
+============================
+
+First case: full lattice
+
+Check of spinor_prod, spinor_prod_re
+and norm_square: 1.48e-16
+
+Consistency of spinor_prod, norm_square
+and mulc_spinor_add: 1.57e-16
+
+Consistency of spinor_prod, norm_square,
+and normalize: 2.26e-16
+
+Check of mulg5 and mulmg5: 0.00e+00
+
+Second case: even points
+
+Check of spinor_prod, spinor_prod_re
+and norm_square: 1.49e-16
+
+Consistency of spinor_prod, norm_square
+and mulc_spinor_add: 3.14e-16
+
+Consistency of spinor_prod, norm_square,
+and normalize: 2.17e-16
+
+Check of mulg5 and mulmg5: 0.00e+00
+
+Third case: odd points
+
+Check of spinor_prod, spinor_prod_re
+and norm_square: 1.49e-16
+
+Consistency of spinor_prod, norm_square
+and mulc_spinor_add: 3.14e-16
+
+Consistency of spinor_prod, norm_square,
+and normalize: 2.17e-16
+
+Check of mulg5 and mulmg5: 0.00e+00
+

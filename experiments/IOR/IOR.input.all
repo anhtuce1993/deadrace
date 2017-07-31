@@ -1,0 +1,40 @@
+===============> start script <===============
+IOR START
+  api=POSIX
+  testFile=/p/crater/rhedges/testFile
+  repetitions=4
+  multiFile=0
+  interTestDelay=5
+  readFile=1
+  writeFile=1
+  filePerProc=1
+  checkWrite=1
+  checkRead=1
+  keepFile=1
+  quitOnError=0
+  segmentCount=1
+  blockSize=32k
+  outlierThreshold=0
+  transferSize=32k
+  singleXferAttempt=0
+  individualDataSets=0
+  verbose=0
+  numTasks=8
+  collective=1
+  preallocate=0
+  useFileView=0
+  keepFileWithError=0
+  setTimeStampSignature=0
+  useSharedFilePointer=0
+  useStridedDatatype=0
+  uniqueDir=0
+  fsync=0
+  storeFileOffset=0
+  maxTimeDuration=60
+  deadlineForStonewalling=0
+  useExistingTestFile=0
+  useO_DIRECT=0
+  showHints=0
+  showHelp=0
+RUN
+

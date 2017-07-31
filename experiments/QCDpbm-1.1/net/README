@@ -1,0 +1,150 @@
+
+################################################################################
+
+                      NODE-TO-NODE NETWORK BANDWIDTH
+
+################################################################################
+
+The MPI programs in this directory serve to measure the effective
+node-to-node bandwidth for the exchange of large (128 - 1024 KB) data
+packages on a parallel computer. They are not intended for an accurate
+determination of the start-up latencies of such communications.
+
+
+FILES
+
+net.h        Header file needed by the main programs in this directory
+
+bw.c         Main program that measures the uni-directional bandwidth
+
+bibw.c       Main program that measures the bi-directional bandwidth
+
+utils.c      Utility programs needed by the main programs
+
+
+MACHINE REQUIREMENTS
+
+These programs should run on any kind of parallel computer whose
+compute nodes have at least 2 independent processing units (processors
+or processor cores). It is assumed that there is a C compiler and an
+MPI implementation which comply with the established standards (C89
+and MPI-1.2).
+
+
+WHAT THE PROGRAMS DO
+
+The main programs bw and bibw cycle through all possible pairs of
+nodes of the computer and measure the time required for exchanging
+data packages of size 128, 256, 512 and 1024 KB among these nodes.
+While the MPI processes on the selected nodes send and receive the
+packages, all other processes are idle.
+
+The blocking MPI_Send() and MPI_Recv() functions are used in all
+cases. As usual, the set of physical processors (or processing cores)
+to be used in the tests is determined by the MPI machine file and the
+command line options of the mpirun command.
+
+In the case of the uni-directional bandwidth test (bw), the time
+required for sending a number of data packages from one node to the
+other is measured. First the MPI process on the first selected node
+sends the packages and then the process on the second node. The time
+is measured using MPI_Wtime() on both MPI processes. The number of
+data packages exchanged is chosen so that the total time spent for the
+test is approximately 2 sec per pair of nodes.
+
+The bi-directional bandwidth test (bibw) assumes that the MPI
+processes with rank 2n and 2n+1 reside on the same node of the
+computer (n=0,1,.. thus labels the nodes). It is up to the user to
+ensure that this is the case by choosing an appropriate machine file.
+The program then cycles through all possible pairs of nodes, with MPI
+processes (2n,2n+1) and (2m,2m+1), and sends data packages from
+process 2n to 2m and simultaneously from 2m+1 to 2n+1. Physically
+these communications go in opposite directions and therefore probe the
+bi-directional bandwidth of the network.
+
+
+EXAMPLES
+
+Assuming the machine file has the lines
+
+node1
+node2
+node3
+node4
+
+and that the number of processes specified on the command line is
+equal to 4, the uni-directional bandwidth test runs through the pairs
+
+node1,node2
+node1,node3
+node1,node4
+node2,node3
+node2,node4
+node3,node4
+
+of nodes and measures the node-to-node bandwidth of the network in
+each case.
+
+For the bi-directional bandwidth test, an appropriate list of machines
+is
+
+node1
+node1
+node2
+node2
+node3
+node3
+node4
+node4
+
+In this case, two MPI processes are launched on each node if the
+number of processes on the command line is set to 8. The test program
+then runs through the same pairs of nodes as before and exchanges data
+packages among the 2+2 processes on the selected nodes.
+
+
+COMPILATION AND PROGRAM EXECUTION
+
+The programs can be compiled using the GNU style Makefile included in
+this directory. The Makefile assumes that the environment variables
+
+  GCC             GNU C compiler command [Example: /usr/bin/gcc]
+
+  MPIR_HOME       MPI home directory [Example: /usr/local/share/mpich]
+
+are defined. All programs are compiled using the $MPIR_HOME/bin/mpicc
+command. The compiler options that can be set in the CFLAGS line
+depend on which C compiler is invoked by the mpicc command.
+
+The executables obtained in this way are bw and bibw. They can be
+executed using the appropriate mpirun command. Before this, the
+machine file may need to be edited so that the tests measure the
+bandwidth for communications among the desired set of nodes.
+
+The total execution time grows proportionally to the square of the
+specified number N of nodes since all possible pairs of nodes are
+considered. The execution time is roughly equal to 4*N*(N-1) seconds,
+i.e. nearly half a day for N=100 nodes. It may therefore be advisable
+to launch a test run on a small number of nodes before a full test is
+performed.
+
+
+TEST RESULTS
+
+The benchmark programs write the results of the tests to the files
+bw.log and bibw.log. The output should be self-explanatory.
+
+In the case of the bi-directional bandwidth measurement, the quoted
+bandwidth is the sum of the bandwidths for the communications in the
+forward (2n -> 2m) and the opposite (2m+1 -> 2n+1) direction.
+
+
+LICENCE
+
+The programs may be used under the terms of the GNU General Public
+Licence (GPL).
+
+
+BUG REPORTS
+
+Please send a report to <luscher@mail.cern.ch> if a bug is detected.

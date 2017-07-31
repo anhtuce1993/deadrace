@@ -1,0 +1,25 @@
+
+Initialization of the spinor fields
+------------------------------------
+
+32x32x16x16 lattice, 2x2x1x1 process grid, 16x16x16x16 local lattice
+
+Allocate 3 single-precision spinor fields
+|s| = 0.00e+00
+
+Choose random single-precision spinor fields
+<s[0]^2> = 4.8990e-01 (sigma^2 = 4.8939e-01)
+<s[1]^2> = 1.4288e-01 (sigma^2 = 1.4288e-01)
+<s[2]^2> = 1.0572e-03 (sigma^2 = 1.0580e-03)
+
+Allocate 3 double-precision spinor fields
+|sd| = 0.00e+00
+
+Choose random double-precision spinor fields
+<sd[0]^2> = 1.2200e-01 (sigma^2 = 1.2204e-01)
+<sd[1]^2> = 2.1538e-02 (sigma^2 = 2.1538e-02)
+<sd[2]^2> = 3.3762e-01 (sigma^2 = 3.3760e-01)
+
+Assign s to sd, free s, reassign s from sd
+|s_original-s_assigned| = 0.00e+00
+

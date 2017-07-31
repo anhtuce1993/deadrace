@@ -1,0 +1,11 @@
+
+Node-to-node uni-directional bandwidth measurement
+--------------------------------------------------
+
+There are 5 MPI processes.
+
+Each entry in the table reports the measured value averaged
+over all possible pairs of nodes. In the case of the bandwidth,
+the minimal and maximal values are given in square brackets.
+
+Packet [KB]  Time/Test [s]  Time/Packet [ms]  Bandwidth [MB/s]   Worst Channel

@@ -1,0 +1,18 @@
+===============> start script <===============
+IOR START
+  api=POSIX
+  testFile=/p/lscratcha/rhedges/testFile
+  repetitions=4
+  readFile=1
+  writeFile=1
+  filePerProc=1
+  checkWrite=0
+  checkRead=0
+  keepFile=0
+  segmentCount=1
+  blockSize=1m
+  transferSize=1m
+  reorderTasks=0
+  deadlineForStonewalling=100
+  useExistingTestFile=0
+RUN

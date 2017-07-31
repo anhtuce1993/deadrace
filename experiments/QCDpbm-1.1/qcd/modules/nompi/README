@@ -1,0 +1,13 @@
+
+Checking a non-MPI function that should also be usable in an MPI
+program requires a replacement for the basic utility functions.
+The associated modules and include files are found in the modules/nompi
+and include/nompi directories
+
+Currently the directories with the check programs are 
+
+misc             SU(3) matrix multiplications
+
+random           Random number generator
+
+sw_term          Action of 6x6 hermitian matrices on Weyl spinors

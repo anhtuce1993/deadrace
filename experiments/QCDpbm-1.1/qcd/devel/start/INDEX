@@ -1,0 +1,13 @@
+
+Initialization programs
+
+check1        Consistency checks on the global index arrays cpr,...,map
+
+check2        Consistency checks on the global field arrays
+
+check3        Initialization of the link variables
+
+check4        Initialization of the spinor fields
+
+check5        Initialization of the random number generator
+

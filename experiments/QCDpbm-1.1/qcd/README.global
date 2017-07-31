@@ -1,0 +1,271 @@
+
+Header file global.h
+
+SYNTAX
+
+In the main program
+
+#define MAIN_PROGRAM
+#include "global.h"
+
+In all other cases
+
+#include "global.h"
+
+
+DESCRIPTION
+
+In this file the globally accessible constants, variables and arrays are
+defined. It is here that the geometry of the lattice and its division into
+processor sublattices can be specified.
+
+
+Lattice geometry
+----------------
+
+Currently the only constants that the user can specify are
+
+ NPROC0            The processes are thought to be arranged in a hypercubic
+ NPROC1            grid with NPROCO,..,NPROC3 processes in direction 0,..,3.
+ NPROC2            If NPROCx=1 the lattice is not divided in direction x.  
+ NPROC3            Otherwise NPROCx has to be even
+
+ L0                The local lattices are blocks of size L0xL1xL2xL3 that
+ L1                build up the full lattice in the obvious way. The sizes
+ L2                of the latter are thus (NPROC0*L0),..,(NPROC3*L3). It
+ L3                is assumed that L0,..,L3 are all even and at least 4  
+
+The program verifies at compilation time that the values of these constants 
+are in the allowed range.
+
+All other macros that are defined in global.h are derived from these input
+values. In particular
+
+ NPROC             Total number of processes
+
+ VOLUME            Number of lattice points in the local lattice
+
+To understand the meaning of the following constants, it is important
+to keep in mind that the local lattices have boundaries on up to 8
+sides. A two-dimensional sketch of the situation is
+
+                  + + + + + + +             *  volume points = the true
+                + * * * * * * * +              local lattice
+                + * * * * * * * +
+                + * * * * * * * +           +  boundary points = copies of 
+                + * * * * * * * +              the corresponding points of
+                + * * * * * * * +              the true local lattices on
+                + * * * * * * * +              the neighbouring processors
+                + * * * * * * * +                 
+                + * * * * * * * +           
+                  + + + + + + + 
+
+Clearly the boundaries in direction +x and -x are absent if NPROCx=1.
+
+ FACE0             Number of lattice points at the boundaries of the 
+ FACE1             local lattice in direction 0,..,3. If there is no
+ FACE2             boundary in direction x the corresponding constant
+ FACE3             FACEx is equal to zero
+
+ BNDRY             Total number of boundary points of the local lattice
+
+The boundaries are labelled such that the left face in direction 0 has
+label 0, the right face in direction 0 has label 1, the left face in
+direction 1 has label 2, and so on.
+
+ NSPIN             Total number of points in the local lattice plus half
+                   of its boundary. Spinor fields are arrays of this size, 
+                   where the first VOLUME elements represent the fields on 
+                   the local lattice. The remaining BNDRY/2 elements are
+                   used as communication buffers,
+
+The global arrays that define the process grid are
+
+ int cpr[4]        Cartesian coordinates of the local process
+
+ int npr[8]        Process ids of the 8 processes that operate on the 
+                   8 neighbouring lattices of the local lattice. 
+                   Specifically npr[2*mu] is the id of the process in 
+                   the negative mu direction and npr[2*mu+1] the same
+                   in the positive mu direction
+
+The global arrays that define the lattice geometry are
+
+ int ipt[VOLUME]      ipt[x3+L3*x2+L2*L3*x1+L1*L2*L3*x0] is the index of the 
+                      point on the local lattice with cartesian coordinates
+                      (x0,x1,x2,x3)
+
+ int iup[VOLUME][4]   iup[ix][mu] is the index of the nearest neighbour
+                      point in the positive ("up") direction mu of the
+                      point on the local lattice with index ix. If the
+                      nearest neighbour point is on the boundary of the 
+                      lattice, the index iy=iup[ix][mu] is in the range 
+                      VOLUME<=iy<VOLUME+BNDRY and uniquely characterizes
+                      the point
+
+ int idn[VOLUME][4]   idn[ix][mu] is the index of the nearest neighbour
+                      point in the negative ("down") direction mu of the
+                      point on the local lattice with index ix. If the
+                      nearest neighbour point is on the boundary of the 
+                      lattice, the index iy=iup[ix][mu] is in the range 
+                      VOLUME<=iy<VOLUME+BNDRY and uniquely characterizes
+                      the point
+
+ int map[BNDRY]       This array maps the boundary of the local lattice
+                      to the corresponding points on the neighbouring
+                      lattices. If ix is a point on the local lattice, and
+                      if iy=iup[ix][mu] a point on the boundary, the index
+                      map[iy-VOLUME] is the label of the matching point on
+                      the next lattice in direction +mu. The same holds 
+                      in the negative direction if iy=idn[ix][mu] is a
+                      boundary point
+
+All these arrays are initialized by the program geometry in the module
+geometry.c. Note that the arrays refer to the *local* lattice. If the
+global cartesian coordinates of a lattice point are given, the
+associated process number ip and local index ix can be obtained by
+calling the program ipt_global [geometry.c].
+
+The labelling of the points is such that the even points (those where
+the sum x0+x1+x2+x3 of the global coordinates is even) come first. In
+particular, the first odd point on the local lattice has index VOLUME/2. 
+
+The boundary points are also labelled in this way, i.e. the BNDRY/2
+even points come first, just after the volume points, and then the
+BNDRY/2 odd points. Following the order of the boundary faces
+specified above, the first even point on the face in direction -0 has
+label VOLUME, while the even points on the face in direction +0 start
+at label VOLUME+FACE0/2, then come the even points in direction -1,
+and so on. Similarly the first odd point on the face in direction -0
+has label VOLUME+BNDRY/2. Note that the faces in directions -x,+x are
+absent if NPROCx=1 (in which case FACEx=0).
+
+
+Global gauge fields
+-------------------
+
+At each odd point in the local lattice, there are 8 link variables
+attached in the directions +0,-0,..,+3,-3. The set of all these link
+variables is referred to as the "local gauge field". 
+
+In memory these link variables are arranged in an array of 8*(VOLUME/2) 
+SU(3) matrices, the first element being the link variable U(x,0) at the 
+first odd point x, then comes U(x-0,0), then U(x,1), and so on. The last 
+element is thus U(y-3,3) where y denotes the last odd point on the local 
+lattice. The values stored in these memory locations define the current
+gauge field.
+
+Initially no memory space is allocated for the single- and double-precision
+gauge fields, but the required memory area can be allocated, initialized 
+and freed by calling the appropriate functions in the module start.c. 
+These programs actually allocate space for BNDRY/4 further link variables,
+namely those residing on the links at the even points that stick out of the 
+local lattice in positive directions as in this sketch:
+
+        +  +  +  +
+           |     | 
+     +  *  *  *  * - +  
+        
+     +  *  *  *  *   +
+
+     +  *  *  *  * - + 
+        
+     +  *  *  *  *   +   
+
+        +  +  +  +             (assuming the lower-left corner is even)   
+
+For these link variables memory space is reserved immediately after the 
+8*(VOLUME/2) matrices that represent the local gauge field. The first
+FACE0/2 memory entries are occupied by the link variables on the +0 side, 
+then come the FACE1/2 entries for the link variables on the +1 side, and 
+so on. The ordering of the links coincides with the one of the odd boundary
+points (the terminal points of the links) described above. 
+
+It should be noted, however, that the values stored in these memory 
+locations are not guaranteed to match the current values of the local 
+gauge field on the neighbouring processes, but can be made to do so by 
+calling the communication programs in the module ucom.c.
+
+The gauge fields can be accessed through the global pointer arrays
+
+ su3 *pu[VOLUME][4]             single-precision gauge field
+
+ su3_dble *pud[VOLUME][4]       double-precision gauge field
+
+(the types "su3" and "su3_dble" are defined in su3.h). Specifically the 
+link variable U(x,mu) is pointed to by pu[ix][mu] and pud[ix][mu] (if the 
+double-precision field is to be accessed), where ix is the label of the 
+point x on the local lattice. 
+
+Since the first odd point has label VOLUME/2, the base addresses of
+the gauge fields are pu[VOLUME/2][0] and pud[VOLUME/2][0]. The pointers 
+to the link variables U(x,mu) and U(x-mu,mu) at any given odd point x 
+can hence also be found by adding the offsets
+
+   ix-VOLUME/2+2*mu and ix-VOLUME/2+2*mu+1
+
+to the base addresses, where ix is the label of x. All the link
+variables that constitute the local gauge field can thus be accessed
+in this simple way.
+
+In some programs it may, however, be more convenient to use the pointer
+arrays pu[][] and pud[][] to access the link variables. When doing so it 
+is important to understand that
+
+(a) only the link variables U(x,mu) at the points x in the local lattice 
+can be reached in this way (but not the variables that stick out of the
+local lattice in the negative directions), and that
+
+(b) the variables U(x,mu) that stick out of the local lattice in positive
+directions at even points x are only correctly set after calling the 
+appropriate link-copy function in the module ucom.c.
+
+
+Global fermion fields
+---------------------
+
+The fermion fields are pointed to by the global arrays
+
+ spinor *(*ps)[NSPIN]              single-precision spinor fields
+
+ spinor_dble *(*psd)[NSPIN]        double-precision spinor fields
+
+(the types "spinor" and "spinor_dble" are defined in su3.h). Here too no
+memory space is initially allocated for the fields. The required memory 
+area can be allocated, initialized and freed by calling the appropriate 
+functions in the modules start.c and sinit.c. After allocation the global 
+variables
+
+ int no_s,no_sd
+
+contain the number of single- and double-precision fermion fields that
+were allocated.
+
+Fermion fields are defined at all points of the local lattice and the
+even points on the boundary. The pointer to the spinor in the field number 
+k at the lattice point with index ix, for example, is ps[k][ix] (psd[k][ix] 
+in the case of the double-precision fields). The spinors at the boundary 
+points are only used in certain programs, such as the programs for the 
+Wilson-Dirac operator, where spinors from the neighbouring lattices need to 
+be accessed.
+
+
+O(a) improvement
+----------------
+
+The Sheikholeslami-Wohlert term (or, more precisely, the diagonal part of the 
+improved Wilson-Dirac operator) are stored in the single- and double-precision 
+arrays sw and swd whose base addresses
+
+ pauli *sw
+ 
+ pauli_dble *swd
+
+are globally known (the types "pauli" and "pauli_dble" are defined in su3.h).
+The required memory space can be allocated, initialized and freed by calling 
+the appropriate functions in the module swinit.c. After allocation the 
+dimension of the arrays is 2*VOLUME, and the upper and lower blocks of the
+SW term at the point x in the local lattice with label ix are stored in 
+sw[2*ix] and sw[2*ix+1] (or swd[2*ix] and swd[2*ix+1] if double-precision 
+fields are used).
+

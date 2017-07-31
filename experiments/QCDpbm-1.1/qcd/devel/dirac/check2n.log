@@ -1,0 +1,20 @@
+
+Action of Qnohat on plane waves
+-------------------------------
+
+32x16x8x8 lattice, 2x2x1x1 process grid, 16x8x8x8 local lattice
+
+For this test to pass, the calculated differences delta
+should be at most 1*10^(-6) or so
+
+delta = 4.77e-07 at p=(6,14,5,3)
+delta = 5.43e-07 at p=(12,14,3,2)
+delta = 5.90e-07 at p=(5,7,6,2)
+delta = 4.80e-07 at p=(15,2,4,5)
+delta = 5.85e-07 at p=(11,9,0,3)
+delta = 5.06e-07 at p=(22,9,1,2)
+delta = 5.40e-07 at p=(20,15,6,4)
+delta = 3.96e-07 at p=(31,14,5,4)
+delta = 3.61e-07 at p=(1,3,7,4)
+delta = 4.21e-07 at p=(13,9,6,0)
+

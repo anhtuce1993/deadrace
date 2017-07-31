@@ -1,0 +1,9 @@
+
+Gauge covariance of Qnohat (random fields)
+------------------------------------------
+
+32x16x8x8 lattice, 2x2x1x1 process grid, 16x8x8x8 local lattice
+
+Maximal normalized difference = 6.84e-07
+(should be around 1*10^(-6) or so)
+

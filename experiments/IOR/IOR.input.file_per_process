@@ -1,0 +1,16 @@
+===============> start script <===============
+IOR START
+  api=POSIX
+  testFile=/p/lscratchrza/rhedges/testFile
+  repetitions=4
+  interTestDelay=5
+  readFile=1
+  writeFile=1
+  filePerProc=1
+  checkWrite=1
+  segmentCount=1
+  blockSize=128m
+  transferSize=4m
+  verbose=1
+RUN
+

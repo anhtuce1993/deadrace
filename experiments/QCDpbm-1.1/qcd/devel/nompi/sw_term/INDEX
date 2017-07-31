@@ -1,0 +1,15 @@
+
+Programs for the Sheikholeslami-Wohlert term
+
+check1        SSE complex multiplication
+
+check2        Test of mul_pauli
+
+check3        Test of mul_pauli_dble
+
+check4        Quick test of inv_pauli_dble
+
+check5        Accuracy of inv_pauli_dble
+
+check6        Check of apply_sw and apply_sw_dble
+

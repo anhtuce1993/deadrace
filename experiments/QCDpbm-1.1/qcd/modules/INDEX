@@ -1,0 +1,16 @@
+
+dirac           Programs for the O(a)-improved Wilson-Dirac operator
+
+linalg          Programs for spinor products and linear combinations
+
+misc            Programs that don't fit anywhere else
+
+nompi           Utility and statistical functions used in non-MPI check
+                and analysis programs
+
+random          Random number generator and related programs
+
+start           Mostly initialization programs
+
+sw_term         Implementation of the Sheikholeslami-Wohlert term
+

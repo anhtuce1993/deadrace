@@ -1,0 +1,33 @@
+
+
+Programs for the even-odd preconditioned Wilson-Dirac operator
+
+
+check1        Gauge covariance of Qhat
+
+check1n       Gauge covariance of Qnohat
+
+check2        Action of Qhat on plane waves
+
+check2n       Action of Qnohat on plane waves
+
+check3        Hermiticity of Qhat
+
+check3n       Hermiticity of Qnohat
+
+check4        Gauge covariance of Qhat_dble
+
+check4n       Gauge covariance of Qnohat_dble
+
+check5        Action of Qhat_dble on plane waves
+
+check5n       Action of Qnohat_dble on plane waves
+
+check6        Hermiticity of Qhat_dble
+
+check6n       Hermiticity of Qnohat_dble
+
+check7        Consistency of Qeo, Qoe, Qnohat and Qhat
+
+check8        Consistency of Qeo_dble, Qoe_dble, Qnohat_dble and Qhat_dble
+

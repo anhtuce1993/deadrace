@@ -1,0 +1,11 @@
+
+Miscellaneous functions
+
+check5        Check of su3xsu3, su3dagxsu3, ...
+
+check6        Check of prod2su3alg and rotate_su3alg
+
+check7        Check of cmat_vec, cmat_add, ...
+
+check8        Check of cmat_vec_dble, cmat_add_dble, ...
+

@@ -1,0 +1,150 @@
+
+********************************************************************************
+
+         Programs for the even-odd preconditioned Wilson-Dirac operator
+
+********************************************************************************
+
+
+Files
+-----
+
+Pbnd.c         Generic programs for the projector theta to the exterior
+               boundary of a block of lattice points (version for single-
+               precision fields)
+
+Pbnd_dble.c    Generic programs for the projector theta to the exterior
+               boundary of a block of lattice points (version for double-
+               precision fields)
+
+Qhat.c         Application of Qhat, Qoe, Qeo and Qnohat to a given
+               single-precision spinor field
+
+Qhat_dble.c    Application of Qhat, Qoe, Qeo and Qnohat to a given
+               double-precision spinor field
+
+scom.c         Communication functions related to Qhat
+
+sdcom.c        Communication functions related to Qhat_dble
+
+
+Include file
+------------
+
+The file dirac.h defines the prototypes for all externally accessible
+functions that are defined in the *.c files listed above.
+
+
+List of functions
+-----------------
+
+void (*assign_s2w[])(int imb[],int vol,spinor *pk,weyl *pl)
+  Applies the projector theta[ifc] to the spinor pk[imb[ix]],
+  ix=0,..,vol-1, and assigns the result to the weyl spinor pl[ix]
+
+void (*add_assign_w2s[])(int imb[],int vol,weyl *pk,spinor *pl)
+  Expands the Weyl spinor pk[ix], ix=0,..,vol-1, to a Dirac spinor
+  psi satisfying theta[ifc]*psi=psi and adds psi to pl[imb[ix]]
+
+void (*sub_assign_w2s[])(int imb[],int vol,weyl *pk,spinor *pl)
+  Expands the Weyl spinor pk[ix], ix=0,..,vol-1, to a Dirac spinor
+  psi satisfying theta[ifc]*psi=psi and subtracts psi from pl[imb[ix]]
+
+void (*mulg5_sub_assign_w2s[])(int imb[],int vol,weyl *pk,spinor *pl)
+  Expands the Weyl spinor pk[ix], ix=0,..,vol-1, to a Dirac spinor
+  psi satisfying theta[ifc]*psi=psi and subtracts gamma5*psi from
+  pl[imb[ix]]
+
+void (*mulg5_sub_assign_wd2sd[])(int imb[],int vol,weyl_dble *pk,
+                                 spinor_dble *pl)
+  Expands the Weyl spinor pk[ix], ix=0,..,vol-1, to a Dirac spinor
+  psi satisfying theta[ifc]*psi=psi and subtracts gamma5*psi from
+  pl[imb[ix]]
+
+void (*assign_sd2wd[])(int imb[],int vol,spinor_dble *pk,weyl_dble *pl)
+  Applies the projector theta[ifc] to the spinor pk[imb[ix]],
+  ix=0,..,vol-1, and assigns the result to the weyl spinor pl[ix]
+
+void (*add_assign_wd2sd[])(int imb[],int vol,weyl_dble *pk,spinor_dble *pl)
+  Expands the Weyl spinor pk[ix], ix=0,..,vol-1, to a Dirac spinor
+  psi satisfying theta[ifc]*psi=psi and adds psi to pl[imb[ix]]
+
+void (*sub_assign_wd2sd[])(int imb[],int vol,weyl_dble *pk,spinor_dble *pl)
+  Expands the Weyl spinor pk[ix], ix=0,..,vol-1, to a Dirac spinor
+  psi satisfying theta[ifc]*psi=psi and subtracts psi from pl[imb[ix]]
+
+void (*mulg5_sub_assign_wd2sd[])(int imb[],int vol,weyl_dble *pk,
+                                 spinor_dble *pl)
+  Expands the Weyl spinor pk[ix], ix=0,..,vol-1, to a Dirac spinor
+  psi satisfying theta[ifc]*psi=psi and subtracts gamma5*psi from
+  pl[imb[ix]]
+
+void Qhat(int k,int l)
+  Applies Qhat to the global single-precision field *ps[k][] and assigns
+  the result to *ps[l][]
+
+void Qoe(int k,int l)
+  Applies the operator Qoe to the even part of the global single-precision
+  field *ps[k][] and assigns the result to *ps[l][]
+
+void Qeo(int k,int l)
+  Applies the operator Qeo to the odd part of the global single-precision
+  field *ps[k][] and *subtracts* the result from *ps[l][]
+
+void Qnohat(int k,int l)
+  Applies the full Dirac operator Q to the global single-precision field
+  *ps[k][] and assigns the result to *ps[l][]
+
+void Qhat_dble(int k,int l)
+  Applies Qhat to the global double-precision field *psd[k][] and assigns
+  the result to *psd[l][]
+
+void Qoe_dble(int k,int l)
+  Applies the operator Qoe to the even part of the global double-precision
+  field *psd[k][] and assigns the result to *psd[l][]
+
+void Qeo_dble(int k,int l)
+  Applies the operator Qeo to the odd part of the global double-precision
+  field *psd[k][] and *subtracts* the result from *psd[l][]
+
+void Qnohat_dble(int k,int l)
+  Applies the full Dirac operator Q to the global double-precision field
+  *psd[k][] and assigns the result to *psd[l][]
+
+void cps_int_bnd(int k)
+  Copies the spinors *ps[k][] at the interior boundary points of the
+  local lattice to the corresponding points on the neighbouring processes.
+  This program compresses the Dirac spinors psi to Weyl spinors before
+  copying and expands the latter after copying to spinors chi such that
+  theta*chi=theta*psi where theta denotes the projector to the exterior
+  boundary of the target lattice
+
+void cps_ext_bnd(int k)
+  Copies the spinors *ps[k][] at the exterior boundary points of the
+  local lattice to the neighbouring processes and *adds* them to the
+  field on the matching points of the target lattices. This program
+  compresses the Dirac spinors psi to Weyl spinors before copying,
+  assuming that theta*psi=psi where theta denotes the projector to
+  the exterior boundary of the local lattice
+
+void free_sbufs(void)
+  Frees the communication buffers used by the programs in this module
+
+void cpsd_int_bnd(int k)
+  Copies the spinors *psd[k][] at the interior boundary points of the
+  local lattice to the corresponding points on the neighbouring processes.
+  This program compresses the Dirac spinors psi to Weyl spinors before
+  copying and expands the latter after copying to spinors chi such that
+  theta*chi=theta*psi where theta denotes the projector to the exterior
+  boundary of the target lattice
+
+void cpsd_ext_bnd(int k)
+  Copies the spinors *psd[k][] at the exterior boundary points of the
+  local lattice to the neighbouring processes and *adds* them to the
+  field on the matching points of the target lattices. This program
+  compresses the Dirac spinors psi to Weyl spinors before copying,
+  assuming that theta*psi=psi where theta denotes the projector to
+  the exterior boundary of the local lattice
+
+void free_sdbufs(void)
+  Frees the communication buffers used by the programs in this module

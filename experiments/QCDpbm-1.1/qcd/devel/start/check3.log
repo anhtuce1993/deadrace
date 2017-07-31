@@ -1,0 +1,24 @@
+
+Initialization of the link variables
+------------------------------------
+
+32x32x16x16 lattice, 2x2x1x1 process grid, 16x16x16x16 local lattice
+
+Allocate single-precision gauge field
+|u-1| = 0.00e+00
+
+Call random_u
+|u^dag*u-1| = 8.05e-07
+|det{u}-1| = 6.56e-07
+
+Allocate double-precision gauge field
+|ud-1| = 0.00e+00
+
+Assign single-precision to double-precision field
+|ud^dag*ud-1| = 1.22e-15
+|det{ud}-1| = 1.11e-15
+
+Reallocate single-precision field
+Assign double-precision to single-precision field
+|u_original-u_assigned| = 4.92e-07
+

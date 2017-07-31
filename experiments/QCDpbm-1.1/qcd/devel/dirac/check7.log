@@ -1,0 +1,20 @@
+
+Consistency of Qeo, Qoe, Qnohat and Qhat
+----------------------------------------
+
+32x16x8x8 lattice, 2x2x1x1 process grid, 16x8x8x8 local lattice
+
+|[Qhat-(Qee-Qeo*Qooinv*Qoe)]*psi|/|psi| = 0.00e+00
+
+|[Q-(Qee+Qoo+Qeo+Qoe)]*psi|/|psi| = 2.98e-07
+
+|{[Q-Qee]*psi_e}_e|/|psi_e| = 0.00e+00
+
+|{[Q-Qoe]*psi_e}_o|/|psi_e| = 0.00e+00
+
+|{[Q-Qoo]*psi_o}_o|/|psi_o| = 0.00e+00
+
+|{[Q-Qeo]*psi_o}_e|/|psi_o| = 0.00e+00
+
+|<psi1,Qeo*psi2>-<Qoe*psi1,psi2>|/|psi1||psi2| = 6.77e-10
+
